@@ -42,7 +42,6 @@ def main():
     input_data_str = input("请输入日期(yyyy/mm/dd):")
     input_data = datetime.datetime.strptime(input_data_str, "%Y/%m/%d")
     week_num = input_data.isocalendar()[1]
-    # week_num = int(input("请输入第几周:"))
     print("第{}周存款{}元".format(week_num, saved_money_list[week_num - 1]))
 
 if __name__ == "__main__":
