@@ -42,7 +42,7 @@ def main():
                       12:31}
     day_month_dict = {30:{4, 6, 9, 11},
                       31:{1, 3, 5, 7, 8, 10, 12}}
-    
+
     days = 0
     days += day
     for i in range(1, month):
@@ -51,7 +51,28 @@ def main():
     if is_leap_year(year) == True and month > 2:
         days += 1
 
+    print("方法一")
     print("这是{}年的第{}天".format(year, days))
+
+    days = day
+    for i in range(1, month):
+        if i in day_month_dict[30]:
+            days += 30
+        elif i in day_month_dict[31]:
+            days += 31
+        else: # 2月
+            days += 28
+
+    # 处理闰年情况
+    if is_leap_year(year) == True and month > 2:
+        days += 1
+
+    print("方法二")
+    print("这是{}年的第{}天".format(year, days))
+
+    # 方法3,用库
+    print("方法三")
+    print("这是{}年的第{}天".format(year, input_date.strftime('%j')))
 
 
 if __name__ == "__main__":
