@@ -30,6 +30,22 @@ class PasswordTool:
                 break
         return has_letter
 
+    # 判断密码是否同时包含大小写字母
+    def check_up_and_low(self):
+        is_up = False
+        is_low = False
+        for c in self.password:
+            if c.isalpha():
+                if c.isupper():
+                    is_up = True
+                else:
+                    is_low = True
+        if is_up == True and is_low == True:
+            return True
+        return False
+
+
+
     def process_password(self):
         # 规则一 密码长度大于8
         if len(self.password) >= 8:
@@ -48,6 +64,12 @@ class PasswordTool:
             self.strength_level += 1
         else:
             print("密码要求包含字母！")
+
+        # 同时包含大小写
+        if self.check_up_and_low():
+            self.strength_level += 1
+        else:
+            print("密码必须同时包含大小写字母!")
 
 
 class FileTool:
@@ -116,7 +138,7 @@ def main():
         line = "密码:{},强度:{}\n".format(password, password_tool.strength_level)
         file_tool.write_to_file(line)
 
-        if password_tool.strength_level == 3:
+        if password_tool.strength_level == 4:
             print("密码强度合格")
             break
         else:
