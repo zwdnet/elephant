@@ -16,7 +16,7 @@ class PasswordTool:
     def check_number_exist(self):
         has_letter = False
         for c in self.password:
-            if c.isalpha():
+            if c.isnumeric():
                 has_letter = True
                 break
         return has_letter
